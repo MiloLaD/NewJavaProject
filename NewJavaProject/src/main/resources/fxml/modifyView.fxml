@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller=".ModifyViewController">
+    <stylesheets>
+        <URL value="@/styles/modifyview.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="680.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@/styles/modifyview.css" />
+         </stylesheets>
+         <children>
+            <AnchorPane id="AnchorPane" layoutY="5.0" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass">
+               <stylesheets>
+                  <URL value="@/styles/homeview.css" />
+               </stylesheets>
+               <children>
+                  <StackPane prefHeight="419.3333333333333" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <BorderPane prefHeight="419.3333333333333" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="400.0" prefWidth="600.0">
+                           <children>
+                              <AnchorPane layoutY="-5.0" prefHeight="31.0" prefWidth="680.0" styleClass="topform" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="6.0" prefHeight="24.0" prefWidth="92.0" text="ContactMe">
+                                       <font>
+                                          <Font name="French Script MT" size="18.0" />
+                                       </font>
+                                       <graphic>
+                                          <Icon content="MESSAGE" />
+                                       </graphic>
+                                    </Label>
+                                    <Button fx:id="goAddContact" layoutX="597.0" layoutY="2.0" minHeight="16.0" minWidth="31.0" mnemonicParsing="false" onAction="#gotoAddContactView" prefHeight="31.0" prefWidth="56.0" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Add">
+                                       <font>
+                                          <Font size="3.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="minimize" />
+                                          <String fx:value="add-btn" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutY="31.333333333333332" prefHeight="403.0" prefWidth="163.0" styleClass="nav-form" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" AnchorPane.topAnchor="31.0">
+                                 <children>
+                                    <TextField fx:id="searchContact" layoutX="7.0" layoutY="26.0" prefHeight="19.0" prefWidth="155.0" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Search">
+                                       <styleClass>
+                                          <String fx:value="search" />
+                                          <String fx:value="search" />
+                                       </styleClass>
+                                    </TextField>
+                                    <Icon content="SEARCH" layoutX="127.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" />
+                                    <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" styleClass="nav-list" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="275.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane layoutX="-112.0" layoutY="-65.0" prefHeight="396.0" prefWidth="516.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css">
+                                       <children>
+                                          <Circle layoutX="269.0" layoutY="60.0" radius="46.0" stroke="BLACK" strokeType="INSIDE">
+                                             <fill>
+                                                <LinearGradient endX="0.5173501577287066" endY="1.0" startX="0.04731861537187257" startY="0.06940065498231714">
+                                                   <stops>
+                                                      <Stop>
+                                                         <color>
+                                                            <Color />
+                                                         </color>
+                                                      </Stop>
+                                                      <Stop offset="1.0">
+                                                         <color>
+                                                            <Color red="0.1358024626970291" green="0.9279835224151611" blue="1.0" />
+                                                         </color>
+                                                      </Stop>
+                                                   </stops>
+                                                </LinearGradient>
+                                             </fill>
+                                          </Circle>
+                                          <Icon content="PERSON" layoutX="242.0" layoutY="36.0" prefHeight="47.0" prefWidth="53.0" />
+                                          <Label layoutX="14.0" layoutY="165.0" prefHeight="26.0" prefWidth="53.0" text="Name : " />
+                                          <Label layoutX="14.0" layoutY="217.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
+                                          <Label layoutX="256.0" layoutY="165.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
+                                          <Label layoutX="257.0" layoutY="217.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
+                                          <HBox fx:id="NickName" layoutX="179.0" layoutY="106.0" prefHeight="31.0" prefWidth="179.0" />
+                                          <HBox fx:id="NickName" layoutX="332.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
+                                             <children>
+                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="Numer" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0">
+                                             <children>
+                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="NickName1" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
+                                             <children>
+                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Finish" />
+                                          <Button fx:id="DeletContact" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#DeletContact" styleClass="cancel" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Cancel" />
+                                          <HBox fx:id="FirstNamedetails" layoutX="83.0" layoutY="214.0" onDragDetected="#shoFirstNamedetails" prefHeight="31.0" prefWidth="163.0">
+                                             <children>
+                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,79 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.semi-top-form{
+    -fx-background-color:#efefef;
+    -fx-border-color:#000;
+    -fx-border-width: 2px, 4px, 4px, 4px;
+    
+}
+.white-bg{
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+}
+.topform {
+    -fx-background-color:#fff;
+    -fx-border-color:#000;
+    -fx-border-width:2px, 2px, 2px, 4px;
+           
+}
+
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.nav-form{
+    -fx-background-color:linear-gradient(to bottom  right, #2d658c, #2ca772);
+}
+
+.textfield{
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-background-radius:5px;
+    -fx-border-color:#000;
+    -fx-border-width:.2px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:5px;
+    -fx-font-size:13px
+}
+
+.textfield:focused{
+    -fx-bacground-color:#fff;
+    -fx-border-color:linear-gradient(to bottom right, #2d658c, #2ca772);
+    -fx-border-width:.8px;
+}
+
+.left-form{
+    -fx-background-color:linear-gradient(to bottom right, #63a68e, #5acea3);
+}
+
+.right-form{
+    -fx-bacground-color:#fff;
+    -fx-border-color:#000;
+    -fx-border-width:4px, 4px, 4px, 0px;
+}
+
+.back{
+    -fx-background-color:transparent;
+    -fx-border-radius:5px;
+    -fx-cursor:hand;
+    
+}
+
+.back:hover{
+    -fx-background-color:#fb3d63;
+}
+
+.add-btn{
+    -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
+    -fx-background-radius:4px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+    -fx-font-size:14px;
+       
+}
+
+.add-btn:hover{
+    -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
+}

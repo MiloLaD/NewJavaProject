@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller=".AddViewController">
+    <stylesheets>
+        <URL value="@/styles/addview.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@/styles/addview.css" />
+         </stylesheets>
+         <children>
+            <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/addview.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="400.0" prefWidth="308.0" styleClass="nav-form" stylesheets="@../../../../../../src/main/resources/styles/addview.css">
+                     <children>
+                        <Label layoutX="73.0" layoutY="161.0" text="ContactMe" textFill="WHITE">
+                           <font>
+                              <Font name="French Script MT" size="48.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="333.0" layoutY="92.0" text="Add new contact!" textFill="#5acea3">
+                     <font>
+                        <Font name="Tahoma Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Namead" layoutX="328.0" layoutY="144.0" onAction="#addName" prefHeight="30.0" prefWidth="220.0" promptText="Name" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/addview.css" />
+                  <TextField fx:id="Firstnamead" layoutX="328.0" layoutY="194.0" onAction="#addFirstname" prefHeight="30.0" prefWidth="220.0" promptText="Firstname" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/addview.css" />
+                  <TextField fx:id="Nicknamead" layoutX="328.0" layoutY="242.0" onAction="#addNickname" prefHeight="30.0" prefWidth="220.0" promptText="Nickname" styleClass="textfield" />
+                  <TextField fx:id="Numberad" layoutX="328.0" layoutY="293.0" onAction="#addNumber" prefHeight="30.0" prefWidth="220.0" promptText="Number" styleClass="textfield" />
+                  <Button fx:id="AddContact" layoutX="328.0" layoutY="347.0" mnemonicParsing="false" onAction="#AddContact" prefHeight="30.0" prefWidth="220.0" styleClass="add-btn" text="Add" />
+                  <Button fx:id="returnpp" layoutX="530.0" layoutY="14.0" minWidth="48.0" mnemonicParsing="false" onAction="#returnPagePrincipale" prefHeight="31.0" prefWidth="55.0" styleClass="back" stylesheets="@../styles/addview.css" text="Back" />
+                  <Icon content="PERSON_ADD" layoutX="434.0" layoutY="77.0" prefHeight="15.0" prefWidth="15.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
