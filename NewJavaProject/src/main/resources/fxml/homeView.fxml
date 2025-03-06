@@ -7,17 +7,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller=".HomeViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".HomeViewController">
     <stylesheets>
         <URL value="@/styles/homeview.css" />
     </stylesheets>
@@ -57,13 +55,13 @@
                         </AnchorPane>
                         <AnchorPane layoutY="37.333333333333336" prefHeight="389.0" prefWidth="163.0" styleClass="nav-form" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" AnchorPane.topAnchor="37.0">
                            <children>
-                              <TextField fx:id="searchContact" layoutX="7.0" layoutY="26.0" prefHeight="19.0" prefWidth="155.0" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Search">
+                              <TextField fx:id="searchContact" layoutX="7.0" layoutY="26.0" prefHeight="19.0" prefWidth="155.0" promptText="Search" stylesheets="@../../../../../../src/main/resources/styles/homeview.css">
                                  <styleClass>
                                     <String fx:value="search" />
                                     <String fx:value="search" />
                                  </styleClass>
                               </TextField>
-                              <Icon content="SEARCH" layoutX="127.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" />
+                              <Icon fx:id="searchBtnHome" accessibleRole="BUTTON" content="SEARCH" layoutX="127.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" />
                               <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" styleClass="nav-list" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" />
                            </children>
                         </AnchorPane>
@@ -71,33 +69,19 @@
                            <children>
                               <AnchorPane layoutX="-109.0" layoutY="-51.0" prefHeight="370.0" prefWidth="513.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/homeview.css">
                                  <children>
-                                    <Circle layoutX="269.0" layoutY="60.0" radius="46.0" stroke="BLACK" strokeType="INSIDE">
-                                       <fill>
-                                          <LinearGradient endX="0.5173501577287066" endY="1.0" startX="0.04731861537187257" startY="0.06940065498231714">
-                                             <stops>
-                                                <Stop>
-                                                   <color>
-                                                      <Color />
-                                                   </color>
-                                                </Stop>
-                                                <Stop offset="1.0">
-                                                   <color>
-                                                      <Color red="0.1358024626970291" green="0.9279835224151611" blue="1.0" />
-                                                   </color>
-                                                </Stop>
-                                             </stops>
-                                          </LinearGradient>
-                                       </fill>
-                                    </Circle>
-                                    <Icon content="PERSON" layoutX="242.0" layoutY="36.0" prefHeight="47.0" prefWidth="53.0" />
+                                    <ImageView fx:id="imageHome" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="121.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../styles/user.jpg" />
+                                       </image>
+                                    </ImageView>
                                     <Label layoutX="14.0" layoutY="165.0" prefHeight="26.0" prefWidth="53.0" text="Name : " />
                                     <Label layoutX="14.0" layoutY="217.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
                                     <Label layoutX="256.0" layoutY="165.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
                                     <Label layoutX="257.0" layoutY="217.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
-                                    <HBox fx:id="NickName" layoutX="192.0" layoutY="116.0" prefHeight="31.0" prefWidth="179.0" />
-                                    <HBox fx:id="NickName" layoutX="332.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0" />
+                                    <HBox fx:id="NickName" layoutX="156.0" layoutY="106.0" prefHeight="31.0" prefWidth="179.0" />
                                     <HBox fx:id="Numer" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0" />
                                     <HBox fx:id="NickName1" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0" />
+                                    <HBox fx:id="NickName" layoutX="328.0" layoutY="162.0" prefHeight="31.0" prefWidth="163.0" />
                                     <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Modify" />
                                     <Button fx:id="DeletContact" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#DeletContact" styleClass="close" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Delete" />
                                     <HBox fx:id="FirstNamedetails" layoutX="83.0" layoutY="214.0" onDragDetected="#shoFirstNamedetails" prefHeight="31.0" prefWidth="163.0" />

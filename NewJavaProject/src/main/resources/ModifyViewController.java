@@ -18,14 +18,19 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 public class ModifyViewController {
 
     @FXML
     private ListView<String> ListContact;
+    @FXML
+    private TextField searchContact;
+    private TextField NameField;
 
     @FXML
-    private TextField searchContact, NameField, FirstnameField, NicknameField, NumberField;
+    private TextField FirstnameField, NicknameField, NumberField;
 
     @FXML
     private Button ModifyContact, DeletContact;
@@ -33,8 +38,21 @@ public class ModifyViewController {
     private personDAO personDAO = new personDAO();  // DAO pour interagir avec la base de données
     private ObservableList<String> personNames = FXCollections.observableArrayList();
     private Person selectedPerson = null;
-
     @FXML
+    private Button goAddContact;
+    @FXML
+    private HBox NickName;
+    @FXML
+    private HBox Numer;
+    @FXML
+    private HBox NickName1;
+    @FXML
+    private HBox FirstNamedetails;
+    @FXML
+    private ImageView imageModify;
+    @FXML
+    private Button modifBtnImgModify;
+
     public void initialize() {
         loadContacts();
         setupSearchFunction();
@@ -62,7 +80,6 @@ public class ModifyViewController {
         });
     }
 
-    @FXML
     private void selectContact(MouseEvent event) {
         String selectedContact = ListContact.getSelectionModel().getSelectedItem();
         if (selectedContact != null) {
@@ -126,7 +143,6 @@ public class ModifyViewController {
         loadContacts();
     }
 
-    @FXML
     private void CancelModification(ActionEvent event) {
         selectedPerson = null;
         clearFields();
@@ -146,5 +162,13 @@ public class ModifyViewController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void gotoAddContactView(ActionEvent event) {
+    }
+
+    @FXML
+    private void shoFirstNamedetails(MouseEvent event) {
     }
 }

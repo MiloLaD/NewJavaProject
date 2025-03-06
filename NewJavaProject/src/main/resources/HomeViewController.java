@@ -7,6 +7,7 @@ package com.MyProject.controllers;
 
 import com.MyProject.newjavaproject.dao.personDAO;
 import com.MyProject.newjavaproject.Person;
+import com.gluonhq.charm.glisten.control.Icon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import javafx.event.ActionEvent;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 public class HomeViewController {
 
@@ -32,8 +35,19 @@ public class HomeViewController {
 
     private personDAO personDAO = new personDAO();  // DAO pour gérer les contacts
     private ObservableList<String> personNames = FXCollections.observableArrayList(); // Liste observable
-
     @FXML
+    private HBox NickName;
+    @FXML
+    private HBox Numer;
+    @FXML
+    private HBox NickName1;
+    @FXML
+    private HBox FirstNamedetails;
+    @FXML
+    private ImageView imageHome;
+    @FXML
+    private Icon searchBtnHome;
+
     public void initialize() {
         loadContacts(); // Charge les contacts à l'initialisation
         setupSearchFunction(); // Active la recherche dynamique
@@ -99,11 +113,14 @@ public class HomeViewController {
         }
     }
 
-    @FXML
     private void selectContact(MouseEvent event) {
         String selectedContact = ListContact.getSelectionModel().getSelectedItem();
         if (selectedContact != null) {
             System.out.println("Contact sélectionné : " + selectedContact);
         }
+    }
+
+    @FXML
+    private void shoFirstNamedetails(MouseEvent event) {
     }
 }

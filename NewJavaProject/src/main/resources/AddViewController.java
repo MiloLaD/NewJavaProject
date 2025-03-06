@@ -36,7 +36,6 @@ public class AddViewController {
 
     private personDAO personDAO = new personDAO(); // DAO pour la base de données
 
-    @FXML
     public void initialize() {
         // Initialisation si nécessaire
     }
@@ -93,5 +92,21 @@ public class AddViewController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void addName(ActionEvent event) {
+    }
+
+    @FXML
+    private void addFirstname(ActionEvent event) {
+    }
+
+    @FXML
+    private void addNickname(ActionEvent event) {
+    }
+
+    @FXML
+    private void addNumber(ActionEvent event) {
     }
 }

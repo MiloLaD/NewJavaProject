@@ -77,3 +77,20 @@
 .add-btn:hover{
     -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
 }
+
+.modif_btn{
+    -fx-background-radius:20px;
+    -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+    -fx-font-size:14px;
+}
+
+.modif-btn:hover{
+    -fx-background-color:linear-gradient(to bottom, #2968a7, #14405d);
+}
+
+.cadre{
+    -fx-background-radius:100px
+}
