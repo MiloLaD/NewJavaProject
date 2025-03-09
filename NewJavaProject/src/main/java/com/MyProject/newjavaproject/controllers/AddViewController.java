@@ -30,7 +30,7 @@ public class AddViewController {
     private TextField Nicknamead;
 
     @FXML
-    private TextField Numberad;
+    private TextField Numberad,mailAddView,adressAddView;
 
     @FXML
     private Button AddContact;
@@ -39,7 +39,7 @@ public class AddViewController {
     private Button returnpp;
 
     @FXML
-    private ImageView profileImage; // ImageView pour la photo de profil
+    private ImageView profileImage, ImageAddView; // ImageView pour la photo de profil
 
     private personDAO personDAO = new personDAO(); // DAO pour la base de données
 

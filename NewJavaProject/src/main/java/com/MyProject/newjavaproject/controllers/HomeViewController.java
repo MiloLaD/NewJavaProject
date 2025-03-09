@@ -53,7 +53,7 @@ public class HomeViewController {
     @FXML
     private HBox FirstNameHomeView;
     @FXML
-    private HBox NickName2HomeView;
+    private HBox NickName2HomeView, AddressHommeView, birthdateHomeView,EmailHomeView;
     @FXML
     private AnchorPane PagecacheHomeView;
     @FXML

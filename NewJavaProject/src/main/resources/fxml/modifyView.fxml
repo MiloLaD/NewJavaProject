@@ -4,6 +4,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -71,39 +72,51 @@
                                           <String fx:value="nav-list" />
                                           <String fx:value="nav-form" />
                                        </styleClass></ListView>
-                                    <Icon accessibleRole="BUTTON" content="SEARCH" layoutX="127.0" layoutY="23.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="275.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <AnchorPane layoutX="-112.0" layoutY="-65.0" prefHeight="396.0" prefWidth="516.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css">
                                        <children>
-                                          <Label layoutX="14.0" layoutY="165.0" prefHeight="26.0" prefWidth="53.0" text="Name : " />
-                                          <Label layoutX="14.0" layoutY="217.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
-                                          <Label layoutX="256.0" layoutY="165.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
-                                          <Label layoutX="257.0" layoutY="217.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
-                                          <HBox fx:id="NickNameModifView" layoutX="332.0" layoutY="162.0" prefHeight="31.0" prefWidth="155.0">
+                                          <Label layoutX="14.0" layoutY="136.0" prefHeight="26.0" prefWidth="53.0" text="Name : " />
+                                          <Label layoutX="14.0" layoutY="178.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
+                                          <Label layoutX="245.0" layoutY="136.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
+                                          <Label layoutX="245.0" layoutY="180.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
+                                          <Label layoutX="14.0" layoutY="225.0" text="Email :" />
+                                          <Label layoutX="245.0" layoutY="222.0" prefHeight="24.0" prefWidth="76.0" text="Address :" />
+                                          <Label layoutX="16.0" layoutY="277.0" text="Birth Date :" />
+                                          <HBox fx:id="NickNameModifView" layoutX="321.0" layoutY="133.0" prefHeight="31.0" prefWidth="155.0">
                                              <children>
-                                                <TextField fx:id="NicknameField" prefHeight="26.0" prefWidth="161.0" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                                <TextField fx:id="NicknameField" prefHeight="26.0" prefWidth="147.0" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="NumberModifView" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0">
+                                          <HBox fx:id="NumberModifView" layoutX="321.0" layoutY="177.0" prefHeight="31.0" prefWidth="179.0">
                                              <children>
                                                 <TextField fx:id="NumberField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="NickName1" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
+                                          <HBox fx:id="NameModifView" layoutX="67.0" layoutY="133.0" prefHeight="31.0" prefWidth="179.0">
                                              <children>
                                                 <TextField fx:id="NameField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
-                                          <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Finish" />
-                                          <Button fx:id="CancelModifContactModifView" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#CancelModifContactModifView" styleClass="cancel" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Cancel" />
-                                          <HBox fx:id="FirstNameModifView" layoutX="83.0" layoutY="214.0" prefHeight="31.0" prefWidth="163.0">
+                                          <HBox fx:id="FirstNameModifView" layoutX="82.0" layoutY="177.0" prefHeight="31.0" prefWidth="163.0">
                                              <children>
                                                 <TextField fx:id="FirstnameField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
+                                          <HBox fx:id="EmailModifyView" layoutX="82.0" layoutY="218.0" prefHeight="31.0" prefWidth="163.0">
+                                             <children>
+                                                <TextField fx:id="EmailField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="AddressModifyView" layoutX="317.0" layoutY="227.0" prefHeight="31.0" prefWidth="163.0">
+                                             <children>
+                                                <TextField fx:id="AddressField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Finish" />
+                                          <Button fx:id="CancelModifContactModifView" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#CancelModifContactModifView" styleClass="cancel" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Cancel" />
                                           <ImageView fx:id="imageModify" accessibleRole="BUTTON" fitHeight="109.0" fitWidth="98.0" layoutX="205.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../styles/user.jpg" />
@@ -118,6 +131,7 @@
                                                 <Icon content="MODE_EDIT" />
                                              </graphic>
                                           </Button>
+                                          <DatePicker fx:id="BirthDateModifyView" layoutX="82.0" layoutY="271.0" prefHeight="30.0" prefWidth="220.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

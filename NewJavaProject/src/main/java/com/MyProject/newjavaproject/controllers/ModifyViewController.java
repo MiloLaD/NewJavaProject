@@ -1,6 +1,7 @@
 package com.MyProject.newjavaproject.controllers;
 
 import com.MyProject.newjavaproject.dao.personDAO;
+import com.gluonhq.charm.glisten.control.DatePicker;
 import com.MyProject.newjavaproject.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,8 +38,10 @@ public class ModifyViewController {
     private Button ModifyContact, CancelModifContactModifView, modifImgModifyView, goAddContact;
 
     @FXML
-    private HBox NickNameModifView, NumberModifView, FirstNameModifView,NameModifView;
+    private HBox NickNameModifView, NumberModifView, FirstNameModifView,NameModifView, AddressModifyView, EmailModifyView;
     
+    @FXML
+    private DatePicker BirthDateModifyView;
     @FXML
     private ImageView imageModify;
 
