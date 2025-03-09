@@ -109,67 +109,68 @@ public class ModifyViewController {
             return;
         }
 
-        // Récupération des nouvelles valeurs
+        // 🔹 Récupération des nouvelles valeurs saisies par l'utilisateur
         String newName = NameField.getText().trim();
         String newFirstname = FirstnameField.getText().trim();
         String newNickname = NicknameField.getText().trim();
         String newNumber = NumberField.getText().trim();
 
-        // Vérifications des champs obligatoires
+        // 🔹 Vérifications des champs obligatoires
         if (newName.isEmpty() || newFirstname.isEmpty() || newNumber.isEmpty()) {
             showAlert("Erreur", "Les champs Nom, Prénom et Numéro sont obligatoires.", Alert.AlertType.ERROR);
             return;
         }
 
-        // Vérification du format du numéro de téléphone
+        // 🔹 Vérification du format du numéro de téléphone
         if (!newNumber.matches("\\d{10}")) {
             showAlert("Erreur", "Le numéro doit contenir 10 chiffres.", Alert.AlertType.ERROR);
             return;
         }
 
-        // Mise à jour des informations du contact sélectionné
+        // 🔹 Mise à jour des informations du contact sélectionné
         selectedPerson.setLastname(newName);
         selectedPerson.setFirstname(newFirstname);
         selectedPerson.setNickname(newNickname);
         selectedPerson.setPhoneNumber(newNumber);
 
-        // Mise à jour dans la base de données
+        // 🔹 Mise à jour dans la base de données
         boolean updateSuccess = personDAO.updatePerson(selectedPerson);
 
         if (updateSuccess) {
             showAlert("Succès", "Le contact a été modifié avec succès !", Alert.AlertType.INFORMATION);
 
-            // Retour à la page de détails du contact modifié
-            try {
-                // Fermer la fenêtre actuelle (ModifyView)
-                Stage stage = (Stage) ModifyContact.getScene().getWindow();
-                stage.close();
+            // 🔹 Fermer la fenêtre actuelle (ModifyView)
+            Stage stage = (Stage) ModifyContact.getScene().getWindow();
+            stage.close();
 
-                // Charger la vue précédente (HomeView.fxml)
+            // 🔹 Mettre à jour la page HomeView avec les nouvelles informations
+            try {
+                // Charger HomeView.fxml
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml"));
                 Parent root = loader.load();
 
-                // Récupérer le contrôleur de la page HomeView
+                // Récupérer le contrôleur HomeViewController
                 HomeViewController homeController = loader.getController();
 
-                // Mettre à jour la page avec les nouvelles informations du contact
+                // Mettre à jour la liste des contacts et afficher le contact modifié
+                homeController.updateContactList();
                 homeController.setContactDetails(selectedPerson);
 
-                // Ouvrir la nouvelle fenêtre avec les informations mises à jour
+                // Ouvrir HomeView et afficher les mises à jour
                 Stage homeStage = new Stage();
                 homeStage.setTitle("Home - Contact Manager");
-                homeStage.setScene(new Scene(root, 800, 600));
+                homeStage.setScene(new Scene(root));
                 homeStage.show();
 
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Erreur", "Impossible de revenir à la page précédente.", Alert.AlertType.ERROR);
             }
+
         } else {
             showAlert("Erreur", "Une erreur est survenue lors de la modification du contact.", Alert.AlertType.ERROR);
         }
     }
-
     @FXML
     private void CancelModifContactModifView(ActionEvent event) {
         try {

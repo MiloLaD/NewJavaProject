@@ -58,20 +58,29 @@ public class Person {
         return birthDate;
     }
 
-    public void setPhoneNumber(String newNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setPhoneNumber(String phoneNumber) {
+        if (!phoneNumber.matches("\\d{10}")) {
+            throw new IllegalArgumentException("Le numéro doit contenir 10 chiffres.");
+        }
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setNickname(String newNickname) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setNickname(String nickname) {
+        this.nickname = nickname;  
     }
 
-    public void setFirstname(String newFirstname) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setFirstname(String firstname) {
+        if (firstname == null || firstname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le prénom ne peut pas être vide.");
+        }
+        this.firstname = firstname;
     }
 
-    public void setLastname(String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setLastname(String lastname) {
+        if (lastname == null || lastname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom ne peut pas être vide.");
+        }
+        this.lastname = lastname;
     }
 
 	public String getProfilePicture() {

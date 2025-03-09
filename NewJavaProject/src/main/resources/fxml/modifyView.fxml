@@ -66,7 +66,11 @@
                                           <String fx:value="search" />
                                        </styleClass>
                                     </TextField>
-                                    <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" styleClass="nav-list" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                    <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css">
+                                       <styleClass>
+                                          <String fx:value="nav-list" />
+                                          <String fx:value="nav-form" />
+                                       </styleClass></ListView>
                                     <Icon accessibleRole="BUTTON" content="SEARCH" layoutX="127.0" layoutY="23.0" />
                                  </children>
                               </AnchorPane>

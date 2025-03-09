@@ -190,6 +190,16 @@ public class HomeViewController {
             System.out.println("Aucun contact sélectionné !");
         }
     }
+    public void updateContactList() {
+        List<Person> persons = personDAO.getAllPersons();
+        personNames.clear();
+
+        for (Person person : persons) {
+            personNames.add(person.getFirstname() + " " + person.getLastname());
+        }
+
+        ListContact.setItems(FXCollections.observableArrayList(personNames));
+    }
 
     private void selectContact(MouseEvent event) {
         String selectedContact = ListContact.getSelectionModel().getSelectedItem();

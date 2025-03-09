@@ -38,14 +38,41 @@
     -fx-background-radius:8px;
 }
 
-.nav-list{
-    -fx-background-color:transparent;
-    -fx-cursor:hand;
-    -fx-text-fill:#fff;
-    -fx-font-size:15px;
-    -fx-font-family:"Arial";
-    -fx-alignment: CENTER_LEFT;
+/* Style général de la liste */
+.nav-list {
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-border-color: transparent;  /* Supprime les bordures */
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
 }
+
+/* Style des cellules de la liste */
+.nav-list .list-cell {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Légèrement transparent */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-padding: 10px;
+    -fx-border-color: rgba(255, 255, 255, 0.1); /* Bordures légères */
+    -fx-border-width: 0 0 1px 0; /* Bordure en bas uniquement */
+}
+
+/* Effet de survol des éléments de la liste */
+.nav-list .list-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3); /* Changement de couleur au survol */
+}
+
+/* Effet lorsqu'un élément est sélectionné */
+.nav-list .list-cell:filled:selected {
+    -fx-background-color: rgba(44, 167, 114, 0.8); /* Vert transparent */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Style pour rendre les cellules sans texte transparentes */
+.nav-list .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
 
 .list-view{
     -fx-background-color:transparent;
