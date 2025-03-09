@@ -53,7 +53,7 @@
 .nav-list{
     -fx-background-color:transparent;
     -fx-cursor:hand;
-    -fx-text-fill:#fff;
+    -fx-text-fill:transparent;
     -fx-font-size:15px;
     -fx-font-family:"Arial";
     -fx-alignment: CENTER_LEFT;

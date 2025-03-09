@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".ModifyViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.MyProject.newjavaproject.controllers.ModifyViewController">
     <stylesheets>
         <URL value="@/styles/modifyview.css" />
     </stylesheets>
@@ -78,26 +78,26 @@
                                           <Label layoutX="14.0" layoutY="217.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
                                           <Label layoutX="256.0" layoutY="165.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
                                           <Label layoutX="257.0" layoutY="217.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
-                                          <HBox fx:id="NickName" layoutX="332.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
+                                          <HBox fx:id="NickNameModifView" layoutX="332.0" layoutY="162.0" prefHeight="31.0" prefWidth="155.0">
                                              <children>
-                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                                <TextField fx:id="NicknameField" prefHeight="26.0" prefWidth="161.0" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="Numer" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0">
+                                          <HBox fx:id="NumberModifView" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0">
                                              <children>
-                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                                <TextField fx:id="NumberField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
                                           <HBox fx:id="NickName1" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
                                              <children>
-                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                                <TextField fx:id="NameField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
                                           <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Finish" />
-                                          <Button fx:id="DeletContact" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#DeletContact" styleClass="cancel" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Cancel" />
-                                          <HBox fx:id="FirstNamedetails" layoutX="83.0" layoutY="214.0" onDragDetected="#shoFirstNamedetails" prefHeight="31.0" prefWidth="163.0">
+                                          <Button fx:id="CancelModifContactModifView" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#CancelModifContactModifView" styleClass="cancel" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Cancel" />
+                                          <HBox fx:id="FirstNameModifView" layoutX="83.0" layoutY="214.0" prefHeight="31.0" prefWidth="163.0">
                                              <children>
-                                                <TextField styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
+                                                <TextField fx:id="FirstnameField" styleClass="textfield" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" />
                                              </children>
                                           </HBox>
                                           <ImageView fx:id="imageModify" accessibleRole="BUTTON" fitHeight="109.0" fitWidth="98.0" layoutX="205.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -105,7 +105,7 @@
                                                 <Image url="@../styles/user.jpg" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="modifBtnImgModify" layoutX="266.0" layoutY="85.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="55.0" stylesheets="@../styles/addview.css">
+                                          <Button fx:id="modifImgModifyView" layoutX="266.0" layoutY="85.0" mnemonicParsing="false" onAction="#modifImageMoView" prefHeight="38.0" prefWidth="55.0" stylesheets="@../styles/addview.css">
                                              <styleClass>
                                                 <String fx:value="modif-btn" />
                                                 <String fx:value="modif_btn" />

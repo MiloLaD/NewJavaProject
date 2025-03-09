@@ -1,15 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mycompany</groupId>
+    <groupId>com.MyProject</groupId>
     <artifactId>NewJavaProject</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
+
+    <!-- Définition des propriétés globales -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release> <!-- Utilisation de JDK 17 -->
+        <javafx.version>21</javafx.version> <!-- Utilisation de JavaFX 17 -->
+    </properties>
+
     <repositories>
         <repository>
             <id>gluon-releases</id>
@@ -17,79 +24,76 @@
         </repository>
     </repositories>
 
+    <dependencies>
+	    <!-- SQLite JDBC (Base de données) -->
+	    <dependency>
+	        <groupId>org.xerial</groupId>
+	        <artifactId>sqlite-jdbc</artifactId>
+	        <version>3.49.1.0</version>
+	    </dependency>
+	
+	    <!-- JavaFX Base (Obligatoire pour JavaFX) -->
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-base</artifactId>
+	        <version>${javafx.version}</version>
+	    </dependency>
+	
+	    <!-- JavaFX Controls (Boutons, Labels, etc.) -->
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-controls</artifactId>
+	        <version>${javafx.version}</version>
+	    </dependency>
+	
+	    <!-- JavaFX FXML (Pour charger des fichiers .fxml) -->
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-fxml</artifactId>
+	        <version>${javafx.version}</version>
+	    </dependency>
+	
+	    <!-- JavaFX Graphics (Si nécessaire) -->
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-graphics</artifactId>
+	        <version>${javafx.version}</version>
+	    </dependency>
+	
+	    <!-- Gluon Charm Glisten (UI JavaFX) -->
+	    <dependency>
+	        <groupId>com.gluonhq</groupId>
+	        <artifactId>charm-glisten</artifactId>
+	        <version>6.2.3</version>
+	    </dependency>
+	</dependencies>
+
+
+    <build>
+    <plugins>
+        <!-- Plugin pour exécuter JavaFX avec Maven -->
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <executions>
+                <execution>
+                    <id>default-cli</id>
+                    <configuration>
+                        <mainClass>com.MyProject.newjavaproject.NewJavaProject</mainClass>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+        
    
 
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>22</maven.compiler.release>
-        <javafx.version>22</javafx.version> <!-- Version de JavaFX -->
-        <exec.mainClass>com.mycompany.newjavaproject.NewJavaProject</exec.mainClass> <!-- Vérifiez que c'est bien votre classe principale -->
-    </properties>
-
-    <dependencies>
-        <!-- SQLite JDBC (Base de données) -->
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.42.0.0</version>
-        </dependency>
-
-        <!-- JavaFX (pour interface graphique) -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.gluonhq</groupId>
-            <artifactId>charm-glisten</artifactId>
-            <version>6.2.0</version>
-        </dependency>
-    
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Plugin pour compiler en Java 22 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>22</release>
-                </configuration>
-            </plugin>
-
-            <!-- Plugin pour exécuter JavaFX avec Maven -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${exec.mainClass}</mainClass>
-                    <arguments>
-                        <argument>--module-path</argument>
-                        <argument>${javafx.sdk}/lib</argument>
-                        <argument>--add-modules</argument>
-                        <argument>javafx.controls,javafx.fxml</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

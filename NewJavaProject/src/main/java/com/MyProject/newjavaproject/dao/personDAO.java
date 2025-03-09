@@ -91,39 +91,42 @@ public class personDAO {
 }
 
     
-    public void updatePerson(Person person) {
-    // SQL request for updating all fields of a person.
-    String sql = "UPDATE person SET lastname = ?, firstname = ?, nickname = ?, phone_number = ?, " +
-                 "address = ?, email_address = ?, birth_date = ? WHERE idperson = ?";
+    public boolean updatePerson(Person person) {
+        // SQL request for updating all fields of a person.
+        String sql = "UPDATE person SET lastname = ?, firstname = ?, nickname = ?, phone_number = ?, " +
+                     "address = ?, email_address = ?, birth_date = ? WHERE idperson = ?";
 
-    
-    try (Connection conn = DatabaseManager.connect(); 
-         PreparedStatement pstmt = conn.prepareStatement(sql)) { 
+        try (Connection conn = DatabaseManager.connect(); 
+             PreparedStatement pstmt = conn.prepareStatement(sql)) { 
 
-       
-        pstmt.setString(1, person.getLastname());
-        pstmt.setString(2, person.getFirstname());
-        pstmt.setString(3, person.getNickname());
-        pstmt.setString(4, person.getPhoneNumber());
-        pstmt.setString(5, person.getAddress());
-        pstmt.setString(6, person.getEmailAddress());
-        pstmt.setDate(7, new java.sql.Date(person.getBirthDate().getTime()));
-        pstmt.setInt(8, person.getIdperson()); // ID of the person to update
+            // Remplissage des valeurs dans la requête SQL
+            pstmt.setString(1, person.getLastname());
+            pstmt.setString(2, person.getFirstname());
+            pstmt.setString(3, person.getNickname());
+            pstmt.setString(4, person.getPhoneNumber());
+            pstmt.setString(5, person.getAddress());
+            pstmt.setString(6, person.getEmailAddress());
+            pstmt.setDate(7, new java.sql.Date(person.getBirthDate().getTime()));
+            pstmt.setInt(8, person.getIdperson()); // ID of the person to update
 
-        
-        int affectedRows = pstmt.executeUpdate();
+            // Exécute la requête de mise à jour
+            int affectedRows = pstmt.executeUpdate();
 
-        // Vérifie si une personne a été mise à jour ou non
-        if (affectedRows > 0) {
-            System.out.println("Personne mise à jour avec succès !");
-        } else {
-            System.out.println(" Aucun enregistrement trouvé avec cet ID.");
+            // Vérifie si la mise à jour a été effectuée
+            if (affectedRows > 0) {
+                System.out.println("Personne mise à jour avec succès !");
+                return true;
+            } else {
+                System.out.println("Aucun enregistrement trouvé avec cet ID.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la mise à jour de la personne : " + e.getMessage());
+            return false; // En cas d'échec
         }
-    } catch (SQLException e) {
-        
-        System.err.println("Erreur lors de la mise à jour de la personne : " + e.getMessage());
     }
 }
 
 
-}
+

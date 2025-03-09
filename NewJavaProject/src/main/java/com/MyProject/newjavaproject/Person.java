@@ -74,5 +74,15 @@ public class Person {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+	public String getProfilePicture() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setProfilePicture(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
    
 }

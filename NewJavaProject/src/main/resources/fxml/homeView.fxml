@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".HomeViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.MyProject.newjavaproject.controllers.HomeViewController">
     <stylesheets>
         <URL value="@/styles/homeview.css" />
     </stylesheets>
@@ -31,7 +31,7 @@
                <children>
                   <AnchorPane prefHeight="400.0" prefWidth="600.0">
                      <children>
-                        <AnchorPane prefHeight="31.0" prefWidth="680.0" styleClass="topform" stylesheets="@../../../../../../src/main/resources/styles/homeview.css">
+                        <AnchorPane prefHeight="31.0" prefWidth="680.0" styleClass="topform" stylesheets="@../styles/homeview.css">
                            <children>
                               <Label layoutX="25.0" layoutY="6.0" prefHeight="24.0" prefWidth="92.0" text="ContactMe">
                                  <font>
@@ -41,7 +41,7 @@
                                     <Icon content="CHAT_BUBBLE_OUTLINE" />
                                  </graphic>
                               </Label>
-                              <Button fx:id="goAddContact" layoutX="597.0" layoutY="2.0" minHeight="16.0" minWidth="31.0" mnemonicParsing="false" onAction="#gotoAddContactView" prefHeight="31.0" prefWidth="56.0" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Add">
+                              <Button fx:id="goAddContact" layoutX="597.0" layoutY="2.0" minHeight="16.0" minWidth="31.0" mnemonicParsing="false" onAction="#gotoAddContactView" prefHeight="31.0" prefWidth="56.0" stylesheets="@/styles/homeview.css" text="Add">
                                  <font>
                                     <Font size="3.0" />
                                  </font>
@@ -53,21 +53,21 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutY="37.333333333333336" prefHeight="389.0" prefWidth="163.0" styleClass="nav-form" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" AnchorPane.topAnchor="37.0">
+                        <AnchorPane layoutY="37.333333333333336" prefHeight="389.0" prefWidth="163.0" styleClass="nav-form" stylesheets="@../styles/homeview.css" AnchorPane.topAnchor="37.0">
                            <children>
-                              <TextField fx:id="searchContact" layoutX="7.0" layoutY="26.0" prefHeight="19.0" prefWidth="155.0" promptText="Search" stylesheets="@../../../../../../src/main/resources/styles/homeview.css">
+                              <TextField fx:id="searchContact" layoutX="7.0" layoutY="26.0" prefHeight="19.0" prefWidth="155.0" promptText="Search" stylesheets="@../styles/homeview.css">
                                  <styleClass>
                                     <String fx:value="search" />
                                     <String fx:value="search" />
                                  </styleClass>
                               </TextField>
                               <Icon fx:id="searchBtnHome" accessibleRole="BUTTON" content="SEARCH" layoutX="127.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" />
-                              <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" styleClass="nav-list" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" />
+                              <ListView fx:id="ListContact" layoutX="4.0" layoutY="62.0" prefHeight="302.0" prefWidth="155.0" styleClass="nav-list" stylesheets="@../styles/homeview.css" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="275.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane layoutX="-109.0" layoutY="-51.0" prefHeight="370.0" prefWidth="513.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/homeview.css">
+                              <AnchorPane layoutX="-109.0" layoutY="-51.0" prefHeight="370.0" prefWidth="513.0" styleClass="white-bg" stylesheets="@../styles/homeview.css">
                                  <children>
                                     <ImageView fx:id="imageHome" accessibleRole="BUTTON" fitHeight="92.0" fitWidth="121.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -78,14 +78,29 @@
                                     <Label layoutX="14.0" layoutY="217.0" prefHeight="26.0" prefWidth="83.0" text="Firstname : " />
                                     <Label layoutX="256.0" layoutY="165.0" prefHeight="26.0" prefWidth="76.0" text="Nickname : " />
                                     <Label layoutX="257.0" layoutY="217.0" prefHeight="26.0" prefWidth="76.0" text="Number:" />
-                                    <HBox fx:id="NickName" layoutX="156.0" layoutY="106.0" prefHeight="31.0" prefWidth="179.0" />
-                                    <HBox fx:id="Numer" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0" />
-                                    <HBox fx:id="NickName1" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0" />
-                                    <HBox fx:id="NickName" layoutX="328.0" layoutY="162.0" prefHeight="31.0" prefWidth="163.0" />
-                                    <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#ModifyContact" styleClass="add-btn" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Modify" />
-                                    <Button fx:id="DeletContact" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#DeletContact" styleClass="close" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" text="Delete" />
-                                    <HBox fx:id="FirstNamedetails" layoutX="83.0" layoutY="214.0" onDragDetected="#shoFirstNamedetails" prefHeight="31.0" prefWidth="163.0" />
-                                    <AnchorPane layoutX="-1.0" layoutY="-8.0" prefHeight="383.0" prefWidth="513.0" styleClass="white-bg" stylesheets="@../../../../../../src/main/resources/styles/homeview.css" visible="false">
+                                    <HBox fx:id="NickNameHomeView" layoutX="156.0" layoutY="106.0" prefHeight="31.0" prefWidth="179.0">
+                                       <children>
+                                          <Label fx:id="NickNameLabel" prefHeight="31.0" prefWidth="186.0" textAlignment="CENTER" />
+                                       </children></HBox>
+                                    <HBox fx:id="NumberHomeView" layoutX="320.0" layoutY="214.0" prefHeight="31.0" prefWidth="179.0">
+                                       <children>
+                                          <Label fx:id="NumberLabel" prefHeight="38.0" prefWidth="187.0" />
+                                       </children></HBox>
+                                    <HBox fx:id="NameHomeView" layoutX="67.0" layoutY="162.0" prefHeight="31.0" prefWidth="179.0">
+                                       <children>
+                                          <Label fx:id="NameLabel" prefHeight="35.0" prefWidth="189.0" />
+                                       </children></HBox>
+                                    <HBox fx:id="NickName2HomeView" layoutX="328.0" layoutY="162.0" prefHeight="31.0" prefWidth="163.0">
+                                       <children>
+                                          <Label fx:id="NickName2Label" prefHeight="38.0" prefWidth="167.0" />
+                                       </children></HBox>
+                                    <Button fx:id="ModifyContact" layoutX="366.0" layoutY="324.0" mnemonicParsing="false" onAction="#goModifyContact" styleClass="add-btn" stylesheets="@/styles/homeview.css" text="Modify" />
+                                    <Button fx:id="DeletContact" layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#DeletContact" styleClass="close" stylesheets="@/styles/homeview.css" text="Delete" />
+                                    <HBox fx:id="FirstNameHomeView" layoutX="83.0" layoutY="214.0" prefHeight="31.0" prefWidth="163.0">
+                                       <children>
+                                          <Label fx:id="FirstNameLabel" prefHeight="39.0" prefWidth="169.0" />
+                                       </children></HBox>
+                                    <AnchorPane fx:id="PagecacheHomeView" layoutX="-1.0" layoutY="-8.0" prefHeight="383.0" prefWidth="513.0" styleClass="white-bg" stylesheets="@/styles/homeview.css" visible="false">
                                        <children>
                                           <Label layoutX="171.0" layoutY="108.0" prefHeight="92.0" prefWidth="206.0" text="ContactMe" textFill="#ede9eb">
                                              <font>
