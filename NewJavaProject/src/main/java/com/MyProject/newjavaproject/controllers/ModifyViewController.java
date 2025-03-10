@@ -1,8 +1,8 @@
 package com.MyProject.newjavaproject.controllers;
 
 import com.MyProject.newjavaproject.dao.personDAO;
-import com.gluonhq.charm.glisten.control.DatePicker;
 import com.MyProject.newjavaproject.Person;
+import javafx.scene.control.DatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,10 +19,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,22 +31,20 @@ public class ModifyViewController {
 
     @FXML
     private ListView<String> ListContact;
-    
+
     @FXML
-    private TextField searchContact, NameField, FirstnameField, NicknameField, NumberField;
+    private TextField searchContact, NameField, FirstnameField, NicknameField, NumberField, EmailField, AddressField;
+
+    @FXML
+    private DatePicker BirthDateModifyView;
 
     @FXML
     private Button ModifyContact, CancelModifContactModifView, modifImgModifyView, goAddContact;
 
     @FXML
-    private HBox NickNameModifView, NumberModifView, FirstNameModifView,NameModifView, AddressModifyView, EmailModifyView;
-    
-    @FXML
-    private DatePicker BirthDateModifyView;
-    @FXML
     private ImageView imageModify;
 
-    private personDAO personDAO = new personDAO();  
+    private personDAO personDAO = new personDAO();
     private ObservableList<String> personNames = FXCollections.observableArrayList();
     private Person selectedPerson = null;
 
@@ -86,20 +85,28 @@ public class ModifyViewController {
                     .findFirst().orElse(null);
 
             if (selectedPerson != null) {
+                // Remplir les champs avec les données actuelles du contact
                 NameField.setText(selectedPerson.getLastname());
                 FirstnameField.setText(selectedPerson.getFirstname());
                 NicknameField.setText(selectedPerson.getNickname());
                 NumberField.setText(selectedPerson.getPhoneNumber());
+                EmailField.setText(selectedPerson.getEmailAddress());
+                AddressField.setText(selectedPerson.getAddress());
 
-                // Mettre à jour les valeurs des HBox
-                ((TextField) NickNameModifView.getChildren().get(0)).setText(selectedPerson.getNickname());
-                ((TextField) NumberModifView.getChildren().get(0)).setText(selectedPerson.getPhoneNumber());
-                ((TextField) FirstNameModifView.getChildren().get(0)).setText(selectedPerson.getFirstname());
-                ((TextField)NameModifView.getChildren().get(0)).setText(selectedPerson.getLastname());
+                // Correction de la conversion de la date
+                if (selectedPerson.getBirthDate() != null) {
+                    BirthDateModifyView.setValue(
+                        selectedPerson.getBirthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                    );
+                } else {
+                    BirthDateModifyView.setValue(null);
+                }
 
-                //Mettre à jour l'image si elle existe
+                // Mettre à jour l'image si elle existe
                 if (selectedPerson.getProfilePicture() != null && !selectedPerson.getProfilePicture().isEmpty()) {
                     imageModify.setImage(new Image(selectedPerson.getProfilePicture()));
+                } else {
+                    imageModify.setImage(new Image("/styles/user.jpg")); // Image par défaut
                 }
             }
         }
@@ -112,54 +119,55 @@ public class ModifyViewController {
             return;
         }
 
-        // 🔹 Récupération des nouvelles valeurs saisies par l'utilisateur
+        // Récupération des nouvelles valeurs saisies
         String newName = NameField.getText().trim();
         String newFirstname = FirstnameField.getText().trim();
         String newNickname = NicknameField.getText().trim();
         String newNumber = NumberField.getText().trim();
+        String newEmail = EmailField.getText().trim();
+        String newAddress = AddressField.getText().trim();
+        LocalDate birthDateLocal = BirthDateModifyView.getValue();
 
-        // 🔹 Vérifications des champs obligatoires
+        // Vérifications des champs obligatoires
         if (newName.isEmpty() || newFirstname.isEmpty() || newNumber.isEmpty()) {
             showAlert("Erreur", "Les champs Nom, Prénom et Numéro sont obligatoires.", Alert.AlertType.ERROR);
             return;
         }
 
-        // 🔹 Vérification du format du numéro de téléphone
+        // Vérification du format du numéro de téléphone
         if (!newNumber.matches("\\d{10}")) {
             showAlert("Erreur", "Le numéro doit contenir 10 chiffres.", Alert.AlertType.ERROR);
             return;
         }
 
-        // 🔹 Mise à jour des informations du contact sélectionné
+        // Mise à jour des informations du contact
         selectedPerson.setLastname(newName);
         selectedPerson.setFirstname(newFirstname);
         selectedPerson.setNickname(newNickname);
         selectedPerson.setPhoneNumber(newNumber);
+        selectedPerson.setEmailAddress(newEmail);
+        selectedPerson.setAddress(newAddress);
+        if (birthDateLocal != null) {
+            selectedPerson.setBirthDate(Date.valueOf(birthDateLocal)); // FIX !
+        }
 
-        // 🔹 Mise à jour dans la base de données
+        // Mise à jour dans la base de données
         boolean updateSuccess = personDAO.updatePerson(selectedPerson);
 
         if (updateSuccess) {
             showAlert("Succès", "Le contact a été modifié avec succès !", Alert.AlertType.INFORMATION);
 
-            // 🔹 Fermer la fenêtre actuelle (ModifyView)
-            Stage stage = (Stage) ModifyContact.getScene().getWindow();
-            stage.close();
-
-            // 🔹 Mettre à jour la page HomeView avec les nouvelles informations
+            //  Retourner à HomeView après la modification
             try {
-                // Charger HomeView.fxml
+                Stage stage = (Stage) ModifyContact.getScene().getWindow();
+                stage.close();
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml"));
                 Parent root = loader.load();
-
-                // Récupérer le contrôleur HomeViewController
                 HomeViewController homeController = loader.getController();
-
-                // Mettre à jour la liste des contacts et afficher le contact modifié
                 homeController.updateContactList();
                 homeController.setContactDetails(selectedPerson);
 
-                // Ouvrir HomeView et afficher les mises à jour
                 Stage homeStage = new Stage();
                 homeStage.setTitle("Home - Contact Manager");
                 homeStage.setScene(new Scene(root));
@@ -169,33 +177,10 @@ public class ModifyViewController {
                 e.printStackTrace();
                 showAlert("Erreur", "Impossible de revenir à la page précédente.", Alert.AlertType.ERROR);
             }
-
         } else {
             showAlert("Erreur", "Une erreur est survenue lors de la modification du contact.", Alert.AlertType.ERROR);
         }
     }
-    @FXML
-    private void CancelModifContactModifView(ActionEvent event) {
-        try {
-            // Fermer la fenêtre actuelle (ModifyView)
-            Stage stage = (Stage) CancelModifContactModifView.getScene().getWindow();
-            stage.close();
-
-            // Charger la vue précédente (HomeView.fxml)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml"));
-            Parent root = loader.load();
-
-            Stage homeStage = new Stage();
-            homeStage.setTitle("Home - Contact Manager");
-            homeStage.setScene(new Scene(root));
-            homeStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Erreur", "Impossible de revenir à la page précédente.", Alert.AlertType.ERROR);
-        }
-    }
-
 
     @FXML
     private void modifImageMoView(ActionEvent event) {
@@ -212,9 +197,17 @@ public class ModifyViewController {
 
             if (selectedPerson != null) {
                 selectedPerson.setProfilePicture(selectedFile.toURI().toString());
-                personDAO.updatePerson(selectedPerson);
+                personDAO.updateProfilePicture(selectedPerson.getIdperson(), selectedFile.toURI().toString());
             }
         }
+    }
+
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     @FXML
@@ -234,41 +227,62 @@ public class ModifyViewController {
             showAlert("Erreur", "Impossible d'ouvrir la page d'ajout.", Alert.AlertType.ERROR);
         }
     }
-
-    private void clearFields() {
-        NameField.clear();
-        FirstnameField.clear();
-        NicknameField.clear();
-        NumberField.clear();
-    }
-
-    private void showAlert(String title, String content, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
     public void setContactDetails(Person person) {
         if (person != null) {
-            this.selectedPerson = person;
+            this.selectedPerson = person; // Stocke la personne sélectionnée
 
-            // Mettre à jour les champs avec les informations de la personne sélectionnée
+            //  Remplissage des champs avec les informations existantes
             NameField.setText(person.getLastname());
             FirstnameField.setText(person.getFirstname());
             NicknameField.setText(person.getNickname());
             NumberField.setText(person.getPhoneNumber());
+            EmailField.setText(person.getEmailAddress());
+            AddressField.setText(person.getAddress());
 
-            // Charger la photo de profil si elle existe
+            //  Vérification si la date de naissance est définie avant de l'afficher
+            if (person.getBirthDate() != null) {
+                java.sql.Date sqlDate = new java.sql.Date(person.getBirthDate().getTime());
+                BirthDateModifyView.setValue(sqlDate.toLocalDate()); // ✅ Correction ici !
+            } else {
+                BirthDateModifyView.setValue(null);
+            }
+
+            //  Mise à jour de l'image si disponible
             if (person.getProfilePicture() != null && !person.getProfilePicture().isEmpty()) {
                 imageModify.setImage(new Image(person.getProfilePicture()));
             } else {
                 imageModify.setImage(new Image("/styles/user.jpg")); // Image par défaut
             }
         } else {
-            System.out.println("⚠️ Erreur : Aucune personne sélectionnée.");
+            System.out.println("Erreur : Aucune personne sélectionnée.");
         }
     }
+    @FXML
+    private void CancelModifContactModifView(ActionEvent event) {
+        try {
+            //  Fermer la fenêtre actuelle (ModifyView)
+            Stage stage = (Stage) CancelModifContactModifView.getScene().getWindow();
+            stage.close();
+
+            //  Charger la page HomeView.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml"));
+            Parent root = loader.load();
+
+            //Récupérer le contrôleur HomeViewController
+            HomeViewController homeController = loader.getController();
+            homeController.updateContactList(); // Mettre à jour la liste des contacts
+
+            // Ouvrir la fenêtre HomeView
+            Stage homeStage = new Stage();
+            homeStage.setTitle("Home - Contact Manager");
+            homeStage.setScene(new Scene(root));
+            homeStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Impossible de revenir à la page précédente.", Alert.AlertType.ERROR);
+        }
+    }
+
 
 }

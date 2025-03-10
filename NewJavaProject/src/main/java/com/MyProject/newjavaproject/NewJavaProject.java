@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class NewJavaProject extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml")); // Assure-toi que le chemin est correct
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeView.fxml")); 
         Parent root = loader.load();
         
         primaryStage.setTitle("My JavaFX App");

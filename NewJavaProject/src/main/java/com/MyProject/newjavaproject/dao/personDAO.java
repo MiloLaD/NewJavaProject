@@ -26,7 +26,8 @@ public class personDAO {
                     rs.getString("phone_number"),
                     rs.getString("address"),
                     rs.getString("email_address"),
-                    rs.getDate("birth_date")
+                    rs.getDate("birth_date"),
+                    rs.getString("profile_picture")
                 );
                 persons.add(person);  // Ajouter la personne à la liste
             }
@@ -38,8 +39,8 @@ public class personDAO {
     }
     
     public void addPerson(Person person) {
-        String sql = "INSERT INTO person (lastname, firstname, nickname, phone_number, address, email_address, birth_date) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO person (lastname, firstname, nickname, phone_number, address, email_address, birth_date, profile_picture) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -50,6 +51,7 @@ public class personDAO {
             pstmt.setString(5, person.getAddress());
             pstmt.setString(6, person.getEmailAddress());
             pstmt.setDate(7, new java.sql.Date(person.getBirthDate().getTime()));
+            pstmt.setString(8, person.getProfilePicture());
 
             pstmt.executeUpdate();
             System.out.println(" Personne ajoutée avec succès.");
@@ -59,8 +61,8 @@ public class personDAO {
     }
     
     public void addNewPersonFromForm(String lastname, String firstname, String nickname, 
-                                 String phone, String address, String email, java.util.Date birthDate) {
-    Person newPerson = new Person(0, lastname, firstname, nickname, phone, address, email, birthDate);
+                                 String phone, String address, String email, java.util.Date birthDate, String profilePicture ) {
+    Person newPerson = new Person(0, lastname, firstname, nickname, phone, address, email, birthDate, profilePicture);
     addPerson(newPerson);
 }
     
@@ -82,7 +84,7 @@ public class personDAO {
         if (affectedRows > 0) {
             System.out.println(" Personne supprimée avec succès !");
         } else {
-            System.out.println("⚠ Aucun enregistrement trouvé avec cet ID.");
+            System.out.println("Aucun enregistrement trouvé avec cet ID.");
         }
     } catch (SQLException e) {
        
@@ -94,7 +96,7 @@ public class personDAO {
     public boolean updatePerson(Person person) {
         // SQL request for updating all fields of a person.
         String sql = "UPDATE person SET lastname = ?, firstname = ?, nickname = ?, phone_number = ?, " +
-                     "address = ?, email_address = ?, birth_date = ? WHERE idperson = ?";
+                     "address = ?, email_address = ?, birth_date = ?, profile_picture = ? WHERE idperson = ?";
 
         try (Connection conn = DatabaseManager.connect(); 
              PreparedStatement pstmt = conn.prepareStatement(sql)) { 
@@ -107,7 +109,8 @@ public class personDAO {
             pstmt.setString(5, person.getAddress());
             pstmt.setString(6, person.getEmailAddress());
             pstmt.setDate(7, new java.sql.Date(person.getBirthDate().getTime()));
-            pstmt.setInt(8, person.getIdperson()); // ID of the person to update
+            pstmt.setString(8, person.getProfilePicture()); 
+            pstmt.setInt(9, person.getIdperson()); // ID of the person to update
 
             // Exécute la requête de mise à jour
             int affectedRows = pstmt.executeUpdate();
@@ -124,6 +127,31 @@ public class personDAO {
         } catch (SQLException e) {
             System.err.println("Erreur lors de la mise à jour de la personne : " + e.getMessage());
             return false; // En cas d'échec
+        }
+    }
+    
+    public boolean updateProfilePicture(int id, String imagePath) {
+        String sql = "UPDATE person SET profile_picture = ? WHERE idperson = ?";
+
+        try (Connection conn = DatabaseManager.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, imagePath);
+            pstmt.setInt(2, id);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Image de profil mise à jour avec succès !");
+                return true;
+            } else {
+                System.out.println("Aucun enregistrement trouvé avec cet ID.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la mise à jour de l'image de profil : " + e.getMessage());
+            return false;
         }
     }
 }

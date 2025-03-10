@@ -10,38 +10,34 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
+
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class AddViewController {
 
     @FXML
-    private TextField Namead;
+    private TextField Namead, Firstnamead, Nicknamead, Numberad, mailAddView, adressAddView;
 
     @FXML
-    private TextField Firstnamead;
+    private DatePicker BirthdayAddView;
 
     @FXML
-    private TextField Nicknamead;
+    private Button AddContact, returnpp, AddphotoAddView;
 
     @FXML
-    private TextField Numberad,mailAddView,adressAddView;
-
-    @FXML
-    private Button AddContact;
-
-    @FXML
-    private Button returnpp;
-
-    @FXML
-    private ImageView profileImage, ImageAddView; // ImageView pour la photo de profil
+    private ImageView ImageAddView; // ImageView pour la photo de profil
 
     private personDAO personDAO = new personDAO(); // DAO pour la base de données
+    private String profilePicturePath = ""; // Chemin de l'image sélectionnée
 
     public void initialize() {
         // Initialisation si nécessaire
@@ -49,35 +45,45 @@ public class AddViewController {
 
     @FXML
     private void AddContact(ActionEvent event) {
-        // Récupération des valeurs entrées par l'utilisateur
+        // Récupération des valeurs saisies par l'utilisateur
         String name = Namead.getText().trim();
         String firstname = Firstnamead.getText().trim();
         String nickname = Nicknamead.getText().trim();
         String number = Numberad.getText().trim();
+        String email = mailAddView.getText().trim();
+        String address = adressAddView.getText().trim();
+        LocalDate birthDateLocal = BirthdayAddView.getValue();
 
-        // Vérification que tous les champs sont remplis
+        // Vérification que tous les champs obligatoires sont remplis
         if (name.isEmpty() || firstname.isEmpty() || number.isEmpty()) {
             showAlert("Erreur", "Veuillez remplir tous les champs obligatoires (Nom, Prénom, Numéro).", Alert.AlertType.ERROR);
             return;
         }
 
-        // Vérification que le numéro est valide (ex: au moins 10 chiffres)
+        // Vérification du format du numéro (ex: 10 chiffres)
         if (!number.matches("\\d{10}")) {
             showAlert("Erreur", "Le numéro doit contenir 10 chiffres.", Alert.AlertType.ERROR);
             return;
         }
 
-        // Création d'un nouvel objet Person
-        Person newPerson = new Person(0, name, firstname, nickname, number, "", "", new Date());
+        // Conversion de LocalDate en Date pour la BDD
+        Date birthDate = (birthDateLocal != null) ? Date.from(birthDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
 
-        // Ajout du contact à la base de données
+        // Création d'un nouvel objet Person avec la photo de profil
+        Person newPerson = new Person(0, name, firstname, nickname, number, address, email, birthDate);
+        newPerson.setProfilePicture(profilePicturePath);
+
+        // Ajout du contact dans la base de données
         personDAO.addPerson(newPerson);
 
-        // Affichage d'un message de succès
+        // Affichage du message de succès
         showAlert("Succès", "Le contact a été ajouté avec succès !", Alert.AlertType.INFORMATION);
 
-        // Réinitialisation des champs après ajout
+        // Réinitialisation des champs après l'ajout
         clearFields();
+
+        // Retour automatique à la `HomeView`
+        returnPagePrincipale(event);
     }
 
     @FXML
@@ -89,7 +95,7 @@ public class AddViewController {
 
             // Obtenir la scène et changer le contenu
             Stage stage = (Stage) returnpp.getScene().getWindow();
-            stage.setScene(new Scene(root)); // Définir la taille de la fenêtre
+            stage.setScene(new Scene(root));
             stage.setTitle("Home - Contact Manager");
             stage.show();
         } catch (IOException e) {
@@ -109,7 +115,8 @@ public class AddViewController {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             Image newImage = new Image(selectedFile.toURI().toString());
-            profileImage.setImage(newImage);
+            ImageAddView.setImage(newImage);
+            profilePicturePath = selectedFile.toURI().toString(); // Stocker le chemin de l'image
         }
     }
 
@@ -118,6 +125,11 @@ public class AddViewController {
         Firstnamead.clear();
         Nicknamead.clear();
         Numberad.clear();
+        mailAddView.clear();
+        adressAddView.clear();
+        BirthdayAddView.setValue(null);
+        ImageAddView.setImage(new Image("/styles/user.jpg")); // Réinitialiser l'image de profil par défaut
+        profilePicturePath = "";
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {
@@ -127,5 +139,4 @@ public class AddViewController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

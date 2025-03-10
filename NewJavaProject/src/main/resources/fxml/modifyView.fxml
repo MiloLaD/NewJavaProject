@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -41,11 +40,8 @@
                                  <children>
                                     <Label layoutX="14.0" layoutY="6.0" prefHeight="24.0" prefWidth="92.0" text="ContactMe">
                                        <font>
-                                          <Font name="French Script MT" size="18.0" />
+                                          <Font name="French Script MT" size="20.0" />
                                        </font>
-                                       <graphic>
-                                          <Icon content="CHAT_BUBBLE_OUTLINE" />
-                                       </graphic>
                                     </Label>
                                     <Button fx:id="goAddContact" layoutX="597.0" layoutY="2.0" minHeight="16.0" minWidth="31.0" mnemonicParsing="false" onAction="#gotoAddContactView" prefHeight="31.0" prefWidth="56.0" stylesheets="@../../../../../../src/main/resources/styles/modifyview.css" text="Add">
                                        <font>
@@ -122,14 +118,11 @@
                                                 <Image url="@../styles/user.jpg" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="modifImgModifyView" layoutX="266.0" layoutY="85.0" mnemonicParsing="false" onAction="#modifImageMoView" prefHeight="38.0" prefWidth="55.0" stylesheets="@../styles/addview.css">
+                                          <Button fx:id="modifImgModifyView" layoutX="266.0" layoutY="85.0" mnemonicParsing="false" onAction="#modifImageMoView" prefHeight="38.0" prefWidth="55.0" stylesheets="@../styles/addview.css" text="Photo">
                                              <styleClass>
                                                 <String fx:value="modif-btn" />
                                                 <String fx:value="modif_btn" />
                                              </styleClass>
-                                             <graphic>
-                                                <Icon content="MODE_EDIT" />
-                                             </graphic>
                                           </Button>
                                           <DatePicker fx:id="BirthDateModifyView" layoutX="82.0" layoutY="271.0" prefHeight="30.0" prefWidth="220.0" />
                                        </children>

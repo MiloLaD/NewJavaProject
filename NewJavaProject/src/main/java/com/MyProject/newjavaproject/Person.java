@@ -11,10 +11,11 @@ public class Person {
     private String address;
     private String emailAddress;
     private Date birthDate;
+    private String profilePicture;
 
  
     public Person(int idperson, String lastname, String firstname, String nickname, String phoneNumber,
-                  String address, String emailAddress, Date birthDate) {
+                  String address, String emailAddress, Date birthDate,String profilePicture) {
         this.idperson = idperson;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -23,6 +24,11 @@ public class Person {
         this.address = address;
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
+        this.profilePicture = profilePicture;
+    }
+    public Person(int idperson, String lastname, String firstname, String nickname, String phoneNumber,
+            String address, String emailAddress, Date birthDate) {
+    	this(idperson, lastname, firstname, nickname, phoneNumber, address, emailAddress, birthDate, null);
     }
 
     // Getters et Setters
@@ -83,14 +89,25 @@ public class Person {
         this.lastname = lastname;
     }
 
-	public String getProfilePicture() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+ 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
 
-	public void setProfilePicture(String string) {
-		// TODO Auto-generated method stub
+    
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+	public void setEmailAddress(String newEmail) {
+		this.emailAddress = newEmail;
 		
+	}
+	public void setAddress(String newAddress) {
+		this.address = newAddress;
+		
+	}
+	public void setBirthDate(Date from) {
+		this.birthDate = from;	
 	}
 
    
